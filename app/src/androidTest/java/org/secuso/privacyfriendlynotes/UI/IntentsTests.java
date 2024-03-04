@@ -29,26 +29,21 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.secuso.privacyfriendlynotes.R;
 import org.secuso.privacyfriendlynotes.ui.SplashActivity;
+import org.secuso.privacyfriendlynotes.ui.notes.AudioNoteActivity;
+import org.secuso.privacyfriendlynotes.ui.notes.ChecklistNoteActivity;
+import org.secuso.privacyfriendlynotes.ui.notes.SketchActivity;
 import org.secuso.privacyfriendlynotes.ui.notes.TextNoteActivity;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class IntentsTests {
 
-    //T7 Testfall
-    @Test
-    public void splashActivityToMainActivityIntentTest() {
-        // Starte SplashActivity
-        Intents.init();
-        ActivityScenario.launch(SplashActivity.class);
-
-        // Überprüfen ob ein Intent zur MainActivity gesendet wurde
-        intended(hasComponent(MainActivity.class.getName()));
-        Intents.release();
-    }
-
+ //   T6 Testfall
     @Test
     public void navigationtoTextNoteActivity() {
+        // Intents Initialisierung
+        Intents.init();
+        // Spezifische Aktivität wird gelaunched
         ActivityScenario.launch(org.secuso.privacyfriendlynotes.ui.main.MainActivity.class);
         onView(withId(R.id.fab_expand_menu_button))
                 .check(matches(isDisplayed())).perform(click());
@@ -56,22 +51,60 @@ public class IntentsTests {
 
         onView(withId(R.id.fab_text)).check(matches(isDisplayed()))
                 .perform(click());
+        //Validierung des Intents
         intended(hasComponent(TextNoteActivity.class.getName()));
-
+        // Espresso-Intents nach jedem Test aufräumen
+        Intents.release();
     }
 
     @Test
     public void navigationToChecklistNoteActivity() {
+        // Intents Initialisierung
+        Intents.init();
+        ActivityScenario.launch(org.secuso.privacyfriendlynotes.ui.main.MainActivity.class);
+        onView(withId(R.id.fab_expand_menu_button))
+                .check(matches(isDisplayed())).perform(click());
+        Log.i("displayed", "menu button is displayed");
 
+        onView(withId(R.id.fab_checklist)).check(matches(isDisplayed()))
+                .perform(click());
+        intended(hasComponent(ChecklistNoteActivity.class.getName()));
+        // Espresso-Intents nach jedem Test aufräumen
+        Intents.release();
     }
+
 
     @Test
     public void navigationToAudioAcitvity() {
+        // Intents Initialisierung
+        Intents.init();
+        ActivityScenario.launch(org.secuso.privacyfriendlynotes.ui.main.MainActivity.class);
+        onView(withId(R.id.fab_expand_menu_button))
+                .check(matches(isDisplayed())).perform(click());
+        Log.i("displayed", "menu button is displayed");
+
+        onView(withId(R.id.fab_audio)).check(matches(isDisplayed()))
+                .perform(click());
+        intended(hasComponent(AudioNoteActivity.class.getName()));
+        // Espresso-Intents nach jedem Test aufräumen
+        Intents.release();
 
     }
 
     @Test
     public void navigationToSketchActivity() {
+        // Intents Initialisierung
+        Intents.init();
+        ActivityScenario.launch(org.secuso.privacyfriendlynotes.ui.main.MainActivity.class);
+        onView(withId(R.id.fab_expand_menu_button))
+                .check(matches(isDisplayed())).perform(click());
+        Log.i("displayed", "menu button is displayed");
+
+        onView(withId(R.id.fab_sketch)).check(matches(isDisplayed()))
+                .perform(click());
+        intended(hasComponent(SketchActivity.class.getName()));
+        // Espresso-Intents nach jedem Test aufräumen
+        Intents.release();
 
     }
 

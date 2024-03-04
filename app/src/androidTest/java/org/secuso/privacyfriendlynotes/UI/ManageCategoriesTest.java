@@ -63,7 +63,7 @@ public class ManageCategoriesTest {
                 .perform(typeText("Notizen"));
         addButton();
     }
-    // Create a Categorie named Checklisten
+    // Erstelle eine Kategorie namens Checklisten
     @Test
     public void createCheckList(){
         onView(withId(R.id.etName)).check(matches(isDisplayed()))
@@ -71,7 +71,7 @@ public class ManageCategoriesTest {
                 .perform(typeText("Checklisten"));
         addButton();
     }
-    //create a categorie names Skizzen
+    //erstelle eine Kategorie namens Skizzen
     @Test
     public void createSkizzen(){
         onView(withId(R.id.etName)).check(matches(isDisplayed()))
@@ -79,7 +79,7 @@ public class ManageCategoriesTest {
                 .perform(typeText("Skizzen"));
         addButton();
     }
-    //Check if the Items added the the RecyclerView are displayed
+
     @Test(expected = PerformException.class)
     public void checkListViewElements(){
         onView(withId(R.id.recyclerview_category))

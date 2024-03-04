@@ -24,16 +24,15 @@ import org.secuso.privacyfriendlynotes.R;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class MainActivity {
+public class addNotiz {
 
     @Rule
      public ActivityScenarioRule activityScenarioRule = new ActivityScenarioRule(org.secuso.privacyfriendlynotes.ui.main.MainActivity.class);
 
-
+    //Testfall T2
     @Test
     public void MenuLayout(){
         onView(withId(R.id.toolbar)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
-//                .perform(click());
 
     }
     @Test
@@ -57,6 +56,7 @@ public class MainActivity {
 
 
     }
+    // Erstellen einer neuen Checkliste T3
     @Test
     public void newChecklist(){
         onView(withId(R.id.fab_checklist)).check(matches(isDisplayed()))
@@ -66,6 +66,18 @@ public class MainActivity {
         onView(withId(R.id.etNewItem))
                 .perform(click())
                 .perform(typeText("Item 1"));
+        onView(withId(R.id.btn_add))
+                .check(matches(isClickable()))
+                .perform(click());
+        onView(withId(R.id.etNewItem))
+                .perform(click())
+                .perform(typeText("Item 2"));
+        onView(withId(R.id.btn_add))
+                .check(matches(isClickable()))
+                .perform(click());
+        onView(withId(R.id.etNewItem))
+                .perform(click())
+                .perform(typeText("Item 3"));
         onView(withId(R.id.btn_add))
                 .check(matches(isClickable()))
                 .perform(click());
